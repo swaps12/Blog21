@@ -53,11 +53,11 @@ Create directory response to create all responses in a folder.
 
 1.Blog listing
 
-curl -o  response/response1.txt -H "Content-Type: application/json" -X POST -d '{"start": 1,"count": 5}' http://localhost:8000/getBlogs.php
+curl -o  response/response1.txt -H "Content-Type: application/json" -X POST -d '{"start": 1,"count": 5}' http://localhost:8000/bloglist.php
 
-curl -o  response/response2.txt -H "Content-Type: application/json" -X POST -d '{"start": 15,"count": 5}' http://localhost:8000/getBlogs.php
+curl -o  response/response2.txt -H "Content-Type: application/json" -X POST -d '{"start": 15,"count": 5}' http://localhost:8000/bloglist.php
 
-curl -o  response/response3.txt -H "Content-Type: application/json" -X POST -d '{"start": 5,"count": 5}' http://localhost:8000/getBlogs.php
+curl -o  response/response3.txt -H "Content-Type: application/json" -X POST -d '{"start": 5,"count": 5}' http://localhost:8000/bloglist.php
 
 2.Add Blog
 
@@ -82,3 +82,13 @@ curl -o  response/response8.txt -H "Content-Type: application/json" -X POST -d '
 
  curl -o  response/response9.txt -H "Content-Type: application/json" -X POST -d '{"blogid" : 11,
  "comments": [{"paraid" : 30, "comment": "This is temp comment"} , {"paraid" : 30, "comment": "This is temp comment"}, {"paraid" : 30, "comment": "This is temp comment"}]}' http://localhost:8000/addComment.php
+
+
+
+ 4.Blog View 
+
+ curl -o  response/response10.txt -H "Content-Type: application/json" -X POST -d '{"blogid" : 3}' http://localhost:8000/getBlog.php
+
+ curl -o  response/response11.txt -H "Content-Type: application/json" -X POST -d '{"blogid" : 13}' http://localhost:8000/getBlog.php
+
+

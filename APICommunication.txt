@@ -1,0 +1,237 @@
+
+Request/Response 
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+1. addBlog - This api can be used to add blog.  
+	
+   EndPoint: http://localhost:8000/addblog.php
+   
+   Param: POST Request with parameters title and blog in JSON. Title is the blog title and blog is the complete blog text. 
+
+   {"title":"A Croatian Microadventure","blog":"In your favorite browser, this form will appear with a text box to fill in and a press-button labeled \"OK\". If you fill in '1905' and press the OK button, your browser will then create a new URL to get for you. The URL will get \"junk.cgi?birthyear=1905&press=OK\" appended to the path part of the previous URL.\\n\\nIf the original form was seen on the page \"www.hotmail.com/when/birth.html\", the second page you'll get will become \"www.hotmail.com/when/junk.cgi?birthyear=1905&press=OK\"."}
+
+   Response:
+
+   For Success: 
+   {
+	  "Status": "200",
+	  "Message": "Success"
+   }
+
+   For Error:
+   {
+	  "Status": "2012",
+	  "Message": "Database Transaction Failed."
+   }
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+2. addComment - This api is used to add comments to blog. Comments can be added to paragraphs. The paragraph id mentioned in the 	sample input data is unique id generated for each paragraph and will be available in bloglist api call along with the blog id.  
+   This is not to be confused with paragraph number. Empty comments will not be added.
+
+   Endpoint: http://localhost:8000/addComment.php
+
+   Params: POST Request with parameters blogid and comments in JSON
+
+   {"blogid" : 8, "comments": [{"paraid" : 4, "comment": "This is temp comment. This is temp comment. This is temp comment."} , {"paraid" : 5, "comment": "This is temp comment."}, {"paraid" : 3, "comment": "This is temp comment. This is temp comment."}] }
+
+   Response:
+
+   For Success: 
+   {
+	  "Status": "200",
+	  "Message": "Success"
+   }
+
+   For Error:
+   {
+	  "Status": "2012",
+	  "Message": "Database Transaction Failed."
+   }
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+3. bloglist - This api will return list of blogs along with the blog content i.e. paras. The number of blogs returned depends on the count specified in the request. The blogs are returned in LIFO i.e. most recently added blogs will be returned first. The para's can be concatenated using parano. 
+
+	Endpoint: http://localhost:8000/bloglist.php
+	Params: POST Request with parameters start and count.
+
+	{"start": 6,"count": 3}
+
+
+   Response:
+
+   For Success: 
+   {  
+   "Status":"200",
+   "Message":"Success",
+   "data":{  
+      "start":"1",
+      "count":"5",
+      "blogs":[  
+	         {  
+	            "blogid":"15",
+	            "blogtitle":"HTTP",
+	            "paras":[  
+	               {  
+	                  "paraid":"39",
+	                  "parano":"1",
+	                  "paratext":"HTTP offers many different methods of authentication and curl supports several: Basic, Digest, NTLM and Negotiate (SPNEGO). Without telling which method to use, curl defaults to Basic. You can also ask curl to pick the most secure ones out of the ones that the server accepts for the given URL, by using --anyauth."
+	               },
+	               {  
+	                  "paraid":"40",
+	                  "parano":"2",
+	                  "paratext":"NOTE! According to the URL specification, HTTP URLs can not contain a user and password, so that style will not work when using curl via a proxy, even though curl allows it at other times. When using a proxy, you _must_ use the -u style for user and password."
+	               }
+	            ]
+	         },
+	         {  
+	            "blogid":"14",
+	            "blogtitle":"HTTP",
+	            "paras":[  
+	               {  
+	                  "paraid":"37",
+	                  "parano":"1",
+	                  "paratext":"HTTP offers many different methods of authentication and curl supports several: Basic, Digest, NTLM and Negotiate (SPNEGO). Without telling which method to use, curl defaults to Basic. You can also ask curl to pick the most secure ones out of the ones that the server accepts for the given URL, by using --anyauth."
+	               },
+	               {  
+	                  "paraid":"38",
+	                  "parano":"2",
+	                  "paratext":"NOTE! According to the URL specification, HTTP URLs can not contain a user and password, so that style will not work when using curl via a proxy, even though curl allows it at other times. When using a proxy, you _must_ use the -u style for user and password."
+	               }
+	            ]
+	         },
+	         {  
+	            "blogid":"13",
+	            "blogtitle":"SFTP \/ SCP",
+	            "paras":[  
+	               {  
+	                  "paraid":"34",
+	                  "parano":"1",
+	                  "paratext":"This is similar to FTP, but you can use the --key option to specify a private key to use instead of a password."
+	               },
+	               {  
+	                  "paraid":"35",
+	                  "parano":"2",
+	                  "paratext":"Note that the private key may itself be protected by a password that is unrelated to the login password of the remote system; this password is specified using the --pass option."
+	               },
+	               {  
+	                  "paraid":"36",
+	                  "parano":"3",
+	                  "paratext":"Typically, curl will automatically extract the public key from the private key file, but in cases where curl does not have the proper library support, a matching public key file must be specified using the --pubkey option."
+	               }
+	            ]
+	         },
+	         {  
+	            "blogid":"12",
+	            "blogtitle":"Tell Git who you are",
+	            "paras":[  
+	               {  
+	                  "paraid":"32",
+	                  "parano":"1",
+	                  "paratext":"Configure the author name and email address to be used with your commits."
+	               },
+	               {  
+	                  "paraid":"33",
+	                  "parano":"2",
+	                  "paratext":"Note that Git strips some characters (for example trailing periods) from user.name."
+	               }
+	            ]
+	         },
+	         {  
+	            "blogid":"11",
+	            "blogtitle":"Tell Git who you are",
+	            "paras":[  
+	               {  
+	                  "paraid":"30",
+	                  "parano":"1",
+	                  "paratext":"Configure the author name and email address to be used with your commits."
+	               },
+	               {  
+	                  "paraid":"31",
+	                  "parano":"2",
+	                  "paratext":"Note that Git strips some characters (for example trailing periods) from user.name."
+	               }
+	            ]
+	         }
+	      ]
+	   }
+	}
+
+   For Error:
+   {
+	  "Status": "2012",
+	  "Message": "Database Transaction Failed."
+   }
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+4. getBlog - This api will return detailed blog information along with the comments. 
+
+	Endpoint: http://localhost:8000/getblog.php
+	Params: POST Request with parameters blogid.
+
+	{"blogid": 3}
+
+
+	Response:
+
+   For Success: 
+
+	{  
+	   "Status":"200",
+	   "Message":"Success",
+	   "data":{  
+	      "blogid":"3",
+	      "blogtitle":"Escaping dynamic values and user input",
+	      "paras":[  
+	         {  
+	            "paraid":"5",
+	            "parano":"1",
+	            "paratext":"In the previous two example queries, I manually placed the values I passed to the database in the query - the user name and email in the INSERT query, and the user id in the SELECT query. If we replace those values with variables that contain unknown values, and especially user input, we need to escape it properly. There are a few characters - notably quotation marks and carriage returns - that will break our query, and in the case of user input allow an attacker to compromise our database (an attack referred to as SQL injection).",
+	            "comments":[  
+	               {  
+	                  "comment":"This is temp comment. This is temp comment. This is temp comment.",
+	                  "paraid":"5",
+	                  "id":"1",
+	                  "timestamp":"2016-06-23 21:17:47"
+	               },
+	               {  
+	                  "comment":"This is temp comment.",
+	                  "paraid":"5",
+	                  "id":"2",
+	                  "timestamp":"2016-06-23 21:17:47"
+	               }
+	            ]
+	         },
+	         {  
+	            "paraid":"6",
+	            "parano":"2",
+	            "paratext":"For that purpose, we'll use the mysqli_real_escape_string() function. Since it needs a database connection, we'll go ahead and wrap it in its own function. In addition, since we only need to escape strings, we might as well quote the value at the same time.",
+	            "comments":[  
+
+	            ]
+	         },
+	         {  
+	            "paraid":"7",
+	            "parano":"3",
+	            "paratext":"If we are not sure of the type of value we pass to the database, it's always best to treat it as a string, escape and quote it.",
+	            "comments":[  
+	               {  
+	                  "comment":"This is temp comment. This is temp comment.",
+	                  "paraid":"7",
+	                  "id":"3",
+	                  "timestamp":"2016-06-23 21:17:47"
+	               }
+	            ]
+	         }
+	      ]
+	   }
+	}
+
+	For Error:
+   {
+	  "Status": "2012",
+	  "Message": "Database Transaction Failed."
+   }

@@ -65,18 +65,8 @@ function main() {
 			} else {
 				for ($j = 0; $j < count($paras); $j++) {
 					$para = $paras[$j];
-					$query = sprintf("SELECT * FROM CommentTable WHERE paraid = ".$para['id']." ");
-					$comments = $db->query($query, $arr);
 
-					if ($comments == false) {
-						$db->disconnect();
-						return JsonHelper::dbTansactErrorJson($db->error());
-					} else if ($comments == -1) {
-						// Query was successful. But no results returned.
-						$comments = [];
-					}
-
-					$paraarray = array("paraid"=>$para['id'], "parano"=>$para['parano'], "paratext"=>$para['paratext'], "comments" =>$comments);
+					$paraarray = array("paraid"=>$para['id'], "parano"=>$para['parano'], "paratext"=>$para['paratext']);
 					$parasarray[$j] = $paraarray;
 				}
 			}
