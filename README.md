@@ -3,6 +3,9 @@
 Setup Instruction
 ------------------
 
+Clone the repo and follow the below mentioned steps.
+
+
 Database Setup
 
 ----------------------------- Creating Database -----------------------------------------------------
@@ -41,7 +44,7 @@ Below are some test cases using curl.
 Create directory response to create all responses in a folder. 
 - mkdir response
 
-1.	Blog listing
+1.Blog listing
 
 curl -o  response/response1.txt -H "Content-Type: application/json" -X POST -d '{"start": 1,"count": 5}' http://localhost:8000/getBlogs.php
 
@@ -49,7 +52,7 @@ curl -o  response/response2.txt -H "Content-Type: application/json" -X POST -d '
 
 curl -o  response/response3.txt  output.txt  -H "Content-Type: application/json" -X POST -d '{"start": 5,"count": 5}' http://localhost:8000/getBlogs.php
 
-2.	Add Blog
+2.Add Blog
 
 curl -o  response/response4.txt  -H "Content-Type: application/json" -X POST -d '{"title":"Tell Git who you are","blog":"Configure the author name and email address to be used with your commits.\\n\\nNote that Git strips some characters (for example trailing periods) from user.name."}' http://localhost:8000/addblog.php
 
@@ -59,7 +62,7 @@ curl -o  response/response5.txt  -H "Content-Type: application/json" -X POST -d 
 curl -o  response/response6.txt  -H "Content-Type: application/json" -X POST -d '{"title":"HTTP", "blog":" HTTP offers many different methods of authentication and curl supports several: Basic, Digest, NTLM and Negotiate (SPNEGO). Without telling which method to use, curl defaults to Basic. You can also ask curl to pick the most secure ones out of the ones that the server accepts for the given URL, by using --anyauth.\\n\\nNOTE! According to the URL specification, HTTP URLs can not contain a user and password, so that style will not work when using curl via a proxy, even though curl allows it at other times. When using a proxy, you _must_ use the -u style for user and password."}' http://localhost:8000/addblog.php
 
 
-3.	Add Comments.
+3.Add Comments.
 
 curl -o  response/response7.txt -H "Content-Type: application/json" -X POST -d '{"blogid" : 13,
  "comments": [{"paraid" : 35, "comment": "This is temp comment"} , {"paraid" : 36, "comment": "This is temp comment"}]
