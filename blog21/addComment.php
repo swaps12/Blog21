@@ -25,7 +25,6 @@ function main() {
 
 	// Check if the title and blog is non empty.
 	if (empty($blogid) || empty($comments)) {
-		printf("Hello Again\n");
 		return JsonHelper::invalidParameterJson();
 	}
 
@@ -47,7 +46,6 @@ function main() {
 			$id = $db->insert($query, $data);
 
 			if ($id == false || $id == -1) {
-				printf("Error occured for %s", $commenttext);
 				// We chose not to do nething here as other comment insertion is atomic
 				// Hence we continue with the loop inspite of the error.
 				//$db->disconnect();

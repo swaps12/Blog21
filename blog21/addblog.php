@@ -54,7 +54,6 @@ function main() {
 			$result = $db->insert($query, $data);
 
 			if ($result == false || $result == -1) {
-				printf("Hello1");
 
 				//Since adding para failed. We need to delete the recently added blog entry
 				//to maintain sanity. Also we need to delete if any of the paras 

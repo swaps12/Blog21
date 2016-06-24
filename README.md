@@ -10,7 +10,14 @@ Database Setup
 
 ----------------------------- Creating Database -----------------------------------------------------
 
-1. Using Blog21.sql create the tables and fill in data using the following command.
+
+1. Create a db on mysql prompt using the following command.
+
+mysql> create database Blog21;
+
+2. Quit the mysql prompt. Change terminal directory to the path where Blog21 is cloned.
+
+3. Using Blog21.sql, create the tables and dump data.
 
 $ mysql -u[UserName] -p[Password] Blog21 < Blog21.sql
 
@@ -50,7 +57,7 @@ curl -o  response/response1.txt -H "Content-Type: application/json" -X POST -d '
 
 curl -o  response/response2.txt -H "Content-Type: application/json" -X POST -d '{"start": 15,"count": 5}' http://localhost:8000/getBlogs.php
 
-curl -o  response/response3.txt  output.txt  -H "Content-Type: application/json" -X POST -d '{"start": 5,"count": 5}' http://localhost:8000/getBlogs.php
+curl -o  response/response3.txt -H "Content-Type: application/json" -X POST -d '{"start": 5,"count": 5}' http://localhost:8000/getBlogs.php
 
 2.Add Blog
 
@@ -64,8 +71,8 @@ curl -o  response/response6.txt  -H "Content-Type: application/json" -X POST -d 
 
 3.Add Comments.
 
-curl -o  response/response7.txt -H "Content-Type: application/json" -X POST -d '{"blogid" : 13,
- "comments": [{"paraid" : 35, "comment": "This is temp comment"} , {"paraid" : 36, "comment": "This is temp comment"}]
+curl -o  response/response7.txt -H "Content-Type: application/json" -X POST -d '{"blogid" : 10,
+ "comments": [{"paraid" : 29, "comment": "This is temp comment"} , {"paraid" : 28, "comment": "This is temp comment"}]
  }' http://localhost:8000/addComment.php
 
 curl -o  response/response8.txt -H "Content-Type: application/json" -X POST -d '{"blogid" : 11,
